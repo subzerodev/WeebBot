@@ -3,6 +3,16 @@ import discord
 from eink import eink
 import logging
 import RPi.GPIO as gpio
+import os
+from os.path import join,dirname
+from dotenv import load_dotenv
+
+#create .env file path
+dotenv_path = join(dirname(__file__),'.env')
+#load file
+load_dotenv(dotenv_path)
+#load discord bot api key
+BOTAPIKEY = os.getenv('DISCORD_BOT_KEY')
 
 #set gpio
 gpio.setmode(gpio.BCM)
@@ -44,14 +54,16 @@ whoConnect=['','','','','','']
 #Ready the bot
 @client.event
 async def on_ready():
-    print('chat id is 670001728')
     print('We have logged in as {0.user}'.format(client))
-   
+    
     for guild in client.guilds:
         if int(guild.id) == 134755712181075968:
             for member in guild.members:
-                print('hi ', member.name)  #debug print name of all connected
+                #print('hi ', member.name)  #debug print name of all connected
                 checkConnected(member) # check for members already connected before bot connection
+                
+                whoConnectStr = ''.join(whoConnect)
+            updateScreen(whoConnectStr)
 
 #If discord members voice state changes
 @client.event
@@ -63,35 +75,40 @@ async def on_voice_state_update(member, before, after):
             checkConnected(member)#check monitored members to see if connected and turn on light
 
             whoConnectStr = ''.join(whoConnect) #list of who on converted to string
-            print('who on ' + whoConnectStr)
+            #print('who on ' + whoConnectStr)
             updateScreen(whoConnectStr)#update screen on who on
+        elif before.channel != after.channel:#if moved channel
+            checkConnected(member)
+            whoConnectStr = ''.join(whoConnect)
+            updateScreen(whoConnectStr)
 
         elif before.channel and not after.channel:#left all voice channels
             checkDisconnected(member)
 
             whoConnectStr = ''.join(whoConnect)
-            print('who o ' + whoConnectStr)
+            #print('who o ' + whoConnectStr)
             updateScreen(whoConnectStr)
 
 def checkConnected(member):#check who connected
 
     if member.id==134755248525934592 and member.voice != None:
-        whoConnect[0] = member.name + ' '
+        #print(member.voice)
+        whoConnect[0] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(15,True)
     if member.id==615528881671241728 and member.voice != None:
-        whoConnect[1] = member.name + ' '
+        whoConnect[1] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(27,True)
     if member.id==161098456730042369 and member.voice != None:
-        whoConnect[2] = member.name + ' '
+        whoConnect[2] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(3,True)
     if member.id==333679716248846353 and member.voice != None:
-        whoConnect[3] = member.name + ' '
+        whoConnect[3] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(7,True)
     if member.id==185088377266110464 and member.voice != None:
-        whoConnect[4] = member.name + ' '
+        whoConnect[4] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(5,True)
     if member.id==294115977707388929 and member.voice != None:
-        whoConnect[5] = member.name + ' '
+        whoConnect[5] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(13,True)
 
 def checkDisconnected(member):#check who disconnected
@@ -118,4 +135,4 @@ def updateScreen(string):#update screen
     eink.stringToPages(string,22)
     eink.pagesToDisplay()
 
-client.run('Nzg0MzgwMzczMzc1MjU0NTQ5.X8odJg.otA8m8GYoyPv-2XY4gMHQrLN2rU')
+client.run(BOTAPIKEY)

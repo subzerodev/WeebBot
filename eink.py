@@ -36,9 +36,6 @@ class eink:
         self.page =0
         self.maxPages = 100
 
-        #Define flags
-        self.dataPlotted = False
-
     def display(self):
         #Updates display
         self.epd.init(self.epd.FULL_UPDATE)
@@ -47,17 +44,6 @@ class eink:
     def fontGrab(self,fontSize):
         #returns font obj of the given font size
         return ImageFont.truetype('./lib/ShadowsIntoLight-Regular.ttf',fontSize)
-
-    def rightText(self,string,fontSize,x,y):
-        #align right
-        self.font_tmp = self.fontGrab(fontSize)
-        self.width_tmp = self.font_tmp.getsize(string)[0]
-        self.draw.text((x-self.width_tmp-1,y-(fontSize/2)),string,font=self.font_tmp,fill=0)
-
-    def leftText(self,string,fontSize,x,y):
-        #align left
-        self.font_tmp = self.fontGrab(fontSize)
-        self.draw.text((x,y-(fontSize/2)),string,font=self.font_tmp,fill=0)
 
     def roundTo(self,x,base,up=False,down=False):
         #round number to a certain nearest base
@@ -70,20 +56,19 @@ class eink:
 
     def stringToPages(self,string,fontSize):
         #displays string on screen and wraps if needed
-        
         #grab font
         self.font_tmp = self.fontGrab(fontSize)
         self.stringFontSize = fontSize
 
         #split string into array of words
-        self.splitString = string.split()
-
+        self.splitString = string.split('},{')
+        
        #array to hold pagewise data
         self.pageHold =[]
         self.pageBuffer_tmp = []
         self.pageIndex = 0
         self.page = 0
-        self.pageHeight = 238
+        self.pageHeight = 500
         self.maxLines = self.roundTo(self.pageHeight/(fontSize+2),1,down=True)
         #logger.debug('MaxLines: ' + str(self.maxLines))
 
@@ -94,16 +79,19 @@ class eink:
 
         #Fill the linewise data array
         for word in self.splitString:
-            if(self.font_tmp.getsize(self.string_tmp + word + ' ')[0] < 200):
+            if(self.font_tmp.getsize(self.string_tmp + word + ' ')[0] < 250):
                 self.string_tmp = self.string_tmp + word + ' '
             else:
                 self.hold_tmp.append(self.string_tmp)
                 self.string_tmp = word + ' '
+                
+        self.hold_tmp.append(self.string_tmp)
 
         #fill in the pagewise data arrray
         for line in self.hold_tmp:
             if(self.pageIndex < self.maxLines):
                 self.pageBuffer_tmp.append(line)
+                
             else:
                 self.pageHold.append(self.pageBuffer_tmp)
                 self.pageBuffer_tmp = []
