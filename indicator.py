@@ -23,6 +23,8 @@ gpio.setup(27,gpio.OUT)
 gpio.setup(7,gpio.OUT)
 gpio.setup(5,gpio.OUT)
 gpio.setup(13,gpio.OUT)
+gpio.setup(21, gpio.IN, pull_up_down=gpio.PUD_UP)#button pin warning dont change to output will cause short
+
 #set all lights off
 gpio.output(3,False)
 gpio.output(15,False)
@@ -51,11 +53,17 @@ client = discord.Client(intents=intents)
 eink = eink()
 whoConnect=['','','','','','']
 
+def buttonEventHandler_falling(pin):#callback to refresh eink if screen bugs
+    #refresh screen
+    print('refresh screen')
+    eink.display()
+
+gpio.add_event_detect(21, gpio.FALLING,callback=buttonEventHandler_falling,bouncetime=2000)#if button pressed refresh
+
 #Ready the bot
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    
     for guild in client.guilds:
         if int(guild.id) == 134755712181075968:
             for member in guild.members:
@@ -77,16 +85,17 @@ async def on_voice_state_update(member, before, after):
             whoConnectStr = ''.join(whoConnect) #list of who on converted to string
             #print('who on ' + whoConnectStr)
             updateScreen(whoConnectStr)#update screen on who on
-        elif before.channel != after.channel:#if moved channel
-            checkConnected(member)
-            whoConnectStr = ''.join(whoConnect)
-            updateScreen(whoConnectStr)
-
+        
         elif before.channel and not after.channel:#left all voice channels
             checkDisconnected(member)
 
             whoConnectStr = ''.join(whoConnect)
             #print('who o ' + whoConnectStr)
+            updateScreen(whoConnectStr)
+
+        elif before.channel != after.channel:#if moved channel
+            checkConnected(member)
+            whoConnectStr = ''.join(whoConnect)
             updateScreen(whoConnectStr)
 
 def checkConnected(member):#check who connected
