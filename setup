@@ -5,6 +5,9 @@ IFS=$'\n\t'
 
 # Install any packages we want
 pacman-key --init
+pacman-key --populate archlinux
+pacman -Sc
+pacman -Syyu
 pacman -Syu --noconfirm vim bash-completion zsh grml-zsh-config sudo avahi nss-mdns wpa_supplicant termite-terminfo
 
 # Update the hostname
