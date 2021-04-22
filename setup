@@ -34,7 +34,7 @@ grep 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' /boot/config.txt >/dev/
 
 # Set zsh as the default shell for root and alarm
 chsh -s /usr/bin/zsh root
-chsh -s /usr/bin/zsh alarm
+chsh -s /usr/bin/zsh announcer
 touch /root/.zshrc
 touch /home/announcer/.zshrc
 chown alarm. /home/announcer/.zshrc
