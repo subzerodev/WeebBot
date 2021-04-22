@@ -10,6 +10,7 @@ addons:
       - wget
       - dosfstools
       - zip
+install: travis_wait mvn install
 script:
   - sudo bash ./create-image
   - xz -z rpizw-rover.img -c > rpizw-rover.img.xz
