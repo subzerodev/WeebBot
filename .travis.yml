@@ -13,5 +13,16 @@ addons:
 install: travis_wait
 script:
   - sudo bash ./create-image
-  - travis_wait 30 xz -z rpizw-rover.img -c > rpizw-rover.img.xz
-  - zip rpizw-rover.img.zip rpizw-rover.img
+  - travis_wait 30 xz -z discordAnnoucer.img -c > discordAnnouncer.img.xz
+  - zip discordAnnoucer.img.zip discordAnnoucer.img
+deploy:
+  provider: releases
+  api_key:
+    secure: Phv8TtbCMxyBmJHN2YX1BfLx4I/2Lbp3pge3Q0HBfDJKFgAWuymxW/CHsFVk8g+zxkYA8nkf1XMMCXqolN9ju/CK1VzDiG6NH6Lse+ySpKwAOJdKbX3g6BKKq2905iWtsPZVfZSmu3eRZRLDgmZT63zYk8u77ieZARfk1D3Yp74HHcWAtcZKWLXIQ/RJQWTYyoXrAbO49hrGW55Y5aejKctmze4Ce8aLYlTRPbRFWk81zPbi0aMB/RHGELL8vvl6PfwAEVn8/R0wPHaiermJziDwAk5VQOnWFq/LlA+Haf1G33hoQNslenGYuuCqGhFFB7iPYWbP3wqf51r2JndejRCKuVLSKajs6aT+jThMWVN9+6ZdV8kOb1fHDryqaSKurC5GQK9MUg5W1hvso2e1OMSOmf3yI8+2zSQsuyqitOFP7sH9KXQjSvg1SZ874vIlX26Ff88hTlHK0zKeoK2B4kWS+0CQUi7hxhfYl4rEo/DqgHv+uhxOIL7nUMyoqe/5DfSj9F+BenKiDN7/5MbTbQnqnbqhrad3OM2QKgBzHSCcaouAuC/TubggXXaTBLpglyRREzPha9600J7H49rT3Tr+YyVEIozo4u0s72afLuWodczga64pUQKjeodW2fDeNp+VyeTk9YUdI56/vZz1dMuIYBHEhl+uR3RTWAkWwaQ=
+  file:
+    - discordAnnoucer.img.xz
+    - discordAnnoucer.img.zip
+  skip_cleanup: true
+  on:
+    repo: subzerodev/WeebBot
+    tags: true
