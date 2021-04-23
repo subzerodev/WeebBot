@@ -3,26 +3,29 @@ sudo: required
 addons:
   apt:
     packages:
-      - qemu
-      - qemu-user-static
-      - binfmt-support
-      - parted
-      - wget
-      - dosfstools
-      - zip
+    - qemu
+    - qemu-user-static
+    - binfmt-support
+    - parted
+    - wget
+    - dosfstools
+    - zip
 install: travis_wait
 script:
-  - sudo bash ./create-image
-  - travis_wait 30 xz -z discordAnnoucer.img -c > discordAnnouncer.img.xz
-  - zip discordAnnoucer.img.zip discordAnnoucer.img
+- sudo bash ./create-image
+- travis_wait 30 xz -z discordAnnoucer.img -c > discordAnnouncer.img.xz
+- zip discordAnnoucer.img.zip discordAnnoucer.img
 deploy:
   provider: releases
   api_key:
     secure: Phv8TtbCMxyBmJHN2YX1BfLx4I/2Lbp3pge3Q0HBfDJKFgAWuymxW/CHsFVk8g+zxkYA8nkf1XMMCXqolN9ju/CK1VzDiG6NH6Lse+ySpKwAOJdKbX3g6BKKq2905iWtsPZVfZSmu3eRZRLDgmZT63zYk8u77ieZARfk1D3Yp74HHcWAtcZKWLXIQ/RJQWTYyoXrAbO49hrGW55Y5aejKctmze4Ce8aLYlTRPbRFWk81zPbi0aMB/RHGELL8vvl6PfwAEVn8/R0wPHaiermJziDwAk5VQOnWFq/LlA+Haf1G33hoQNslenGYuuCqGhFFB7iPYWbP3wqf51r2JndejRCKuVLSKajs6aT+jThMWVN9+6ZdV8kOb1fHDryqaSKurC5GQK9MUg5W1hvso2e1OMSOmf3yI8+2zSQsuyqitOFP7sH9KXQjSvg1SZ874vIlX26Ff88hTlHK0zKeoK2B4kWS+0CQUi7hxhfYl4rEo/DqgHv+uhxOIL7nUMyoqe/5DfSj9F+BenKiDN7/5MbTbQnqnbqhrad3OM2QKgBzHSCcaouAuC/TubggXXaTBLpglyRREzPha9600J7H49rT3Tr+YyVEIozo4u0s72afLuWodczga64pUQKjeodW2fDeNp+VyeTk9YUdI56/vZz1dMuIYBHEhl+uR3RTWAkWwaQ=
   file:
-    - discordAnnoucer.img.xz
-    - discordAnnoucer.img.zip
+  - discordAnnoucer.img.xz
+  - discordAnnoucer.img.zip
   skip_cleanup: true
-  on:
+  true:
     repo: subzerodev/WeebBot
     tags: true
+env:
+  global:
+    secure: UvC3vabBuTwO+ORzeN+mAi8X+ADzPnHOAkL+NKtKzAhVWzZwvI0LSCodQVP3cT309SCCi+DGAPXjueDrv+iJkwhJFwA+IAUjhJEjKoydEEdiSoZq/bKsHtITf9o/5Sto+6GWAtVIJQFH6X8EflXqGO3AR6Twl1fBdxoN8ovnT05kUyy79UFnVllnfH4j/13DfmZvsa/qWgNO7eESSjbp5TWoWkXX6eAuSrvMUiWw8gWpeA6vcGWtWaKPhm4uofmRF/vx9AOpPLEAkFJiSSa7WGEYv7KwFf1JDyVdMHNX8toOPvUCze34EZk9/7UmtVwz2L2y3vrcWPSKxS57qmEu415pm0s+YPeHYfZg6d4bs5U60d1gA3MWx7E3Scqj2QDziFoyNhcOYux9ULxdbf/7noEJP5humJLyr60Q5ICTxo/RPzVrIYTQZV0zOWE9hEuuux2hcBKbuQLasmWGpPXVJVT+NGwnmbu1gQZrvxrNk4dIvqH7nXuI25NhfSp7lv/d357U3dw+y7DVYx7aHR3PKyeUarYWlRUC2CQiWANcxuzTf/iDotS//K9qBU89ERQjucYzBfp3lrFFsl86KqcX2BeuMtCtVajjNBL/w2LVleUOpYDXXrZLInEHhX/+cC2AHwD0sfdkkxxdCY58uYjR1AqXVHvq+Vmr8uMf75Oj20I=
