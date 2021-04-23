@@ -23,7 +23,7 @@ deploy:
   - discordAnnoucer.img.zip
   skip_cleanup: true
   on:
-    branch: master
+    branch: main
     repo: subzerodev/WeebBot
 env:
   global:
