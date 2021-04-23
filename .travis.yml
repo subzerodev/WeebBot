@@ -13,5 +13,5 @@ addons:
 install: travis_wait
 script:
   - sudo bash ./create-image
-  - xz -z rpizw-rover.img -c > rpizw-rover.img.xz
+  - travis_wait 30 xz -z rpizw-rover.img -c > rpizw-rover.img.xz
   - zip rpizw-rover.img.zip rpizw-rover.img
