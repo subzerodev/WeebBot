@@ -22,9 +22,9 @@ deploy:
   - discordAnnoucer.img.xz
   - discordAnnoucer.img.zip
   skip_cleanup: true
-  true:
+  on:
+    branch: master
     repo: subzerodev/WeebBot
-    tags: true
 env:
   global:
     secure: UvC3vabBuTwO+ORzeN+mAi8X+ADzPnHOAkL+NKtKzAhVWzZwvI0LSCodQVP3cT309SCCi+DGAPXjueDrv+iJkwhJFwA+IAUjhJEjKoydEEdiSoZq/bKsHtITf9o/5Sto+6GWAtVIJQFH6X8EflXqGO3AR6Twl1fBdxoN8ovnT05kUyy79UFnVllnfH4j/13DfmZvsa/qWgNO7eESSjbp5TWoWkXX6eAuSrvMUiWw8gWpeA6vcGWtWaKPhm4uofmRF/vx9AOpPLEAkFJiSSa7WGEYv7KwFf1JDyVdMHNX8toOPvUCze34EZk9/7UmtVwz2L2y3vrcWPSKxS57qmEu415pm0s+YPeHYfZg6d4bs5U60d1gA3MWx7E3Scqj2QDziFoyNhcOYux9ULxdbf/7noEJP5humJLyr60Q5ICTxo/RPzVrIYTQZV0zOWE9hEuuux2hcBKbuQLasmWGpPXVJVT+NGwnmbu1gQZrvxrNk4dIvqH7nXuI25NhfSp7lv/d357U3dw+y7DVYx7aHR3PKyeUarYWlRUC2CQiWANcxuzTf/iDotS//K9qBU89ERQjucYzBfp3lrFFsl86KqcX2BeuMtCtVajjNBL/w2LVleUOpYDXXrZLInEHhX/+cC2AHwD0sfdkkxxdCY58uYjR1AqXVHvq+Vmr8uMf75Oj20I=
