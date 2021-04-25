@@ -18,6 +18,8 @@ script:
 - zip discordAnnoucer.img.zip discordAnnoucer.img
 deploy:
   provider: releases
+  api_key:
+    secure: ZZIVgzLhYXEJBK5mRT6vuvPi7CYwdfISce+EQbnE0ZPpneQZHDMgC5+lN+G/sAeMXcH5HoslFjzl7PpC/UJ0ZnNlUUUpVilPMXzPVrof1xTNqeQ5QFnlKgyVn8o6BOFZwQNidVKbRLZEaom7XvCKbtXYAuQgnEnBVDuqX0K7AGlWJR1Ka2T2x2x5UaHw2zXDJJWnSNmXgVXmidfZi45ZAQqFCVOP0BW/sjtFw6ZjyW6ZQcek+qHTv8NXRrAdJ+vMKge+l98XWlf7mRJFclAg7/gyKYC288clfu+4M9BH+v3QU54C1/WlZOy3xFxcU38WSuCW4o/OiiKXsKXXVgCr/nvI6Y9lkvqQ2LfYTp3HddJ6tdGFAjzi7zZiVjKpBnqpph6/S4dij+4ivb1RMTSq6BvQKN71TZs6RVkuku5/apY213KTQyMy1HN4xWjlljZ8vNJ9hl4bmejSFoSM+WvqXmwgTu5r5gtbazazdV5ya2xqGeBH8WAaS+lPTfCzHouIP/3/TM7F4zpS/lqpDAKpl2hZZ9WwYTU/fuvUF/lIVUrcclLZUL/Tn9BVFHTiMXhf1a4W4E7tWy84BCPfWSCbuT5Qu6iHu7w7QYqI96uy6y+TRvWoihIorZCBrwExUaGDiSMbs0XctMhEPMoY9XRF3520BQBfyVsgdEEIJSCN2CY=
   file:
   - discordAnnoucer.img.xz
   - discordAnnoucer.img.zip
@@ -25,6 +27,3 @@ deploy:
   on:
     branch: main
     repo: subzerodev/WeebBot
-env:
-  global:
-    secure: UvC3vabBuTwO+ORzeN+mAi8X+ADzPnHOAkL+NKtKzAhVWzZwvI0LSCodQVP3cT309SCCi+DGAPXjueDrv+iJkwhJFwA+IAUjhJEjKoydEEdiSoZq/bKsHtITf9o/5Sto+6GWAtVIJQFH6X8EflXqGO3AR6Twl1fBdxoN8ovnT05kUyy79UFnVllnfH4j/13DfmZvsa/qWgNO7eESSjbp5TWoWkXX6eAuSrvMUiWw8gWpeA6vcGWtWaKPhm4uofmRF/vx9AOpPLEAkFJiSSa7WGEYv7KwFf1JDyVdMHNX8toOPvUCze34EZk9/7UmtVwz2L2y3vrcWPSKxS57qmEu415pm0s+YPeHYfZg6d4bs5U60d1gA3MWx7E3Scqj2QDziFoyNhcOYux9ULxdbf/7noEJP5humJLyr60Q5ICTxo/RPzVrIYTQZV0zOWE9hEuuux2hcBKbuQLasmWGpPXVJVT+NGwnmbu1gQZrvxrNk4dIvqH7nXuI25NhfSp7lv/d357U3dw+y7DVYx7aHR3PKyeUarYWlRUC2CQiWANcxuzTf/iDotS//K9qBU89ERQjucYzBfp3lrFFsl86KqcX2BeuMtCtVajjNBL/w2LVleUOpYDXXrZLInEHhX/+cC2AHwD0sfdkkxxdCY58uYjR1AqXVHvq+Vmr8uMf75Oj20I=
