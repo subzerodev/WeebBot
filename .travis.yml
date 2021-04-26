@@ -27,3 +27,4 @@ deploy:
   on:
     branch: main
     repo: subzerodev/WeebBot
+    tags: true
