@@ -36,9 +36,9 @@ grep 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' /boot/config.txt >/dev/
 chsh -s /usr/bin/zsh root
 touch /root/.zshrc
 userdel alarm
-echo "rootpasswd" | passwd --stdin root 
+echo "rootpasswd" | passwd root 
 useradd -m G wheel -s /bon/zsh discordannoucer
-echo "discordannoucer" | passwd --stdin discordannoucer 
+echo "discordannoucer" | passwd discordannoucer 
 echo 'discordannoucer  ALL=(ALL:ALL) ALL' >> /etc/sudoers
 
 cat << EOF >> /etc/wpa_supplicant/wifinetwork
