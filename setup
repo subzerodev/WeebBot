@@ -48,4 +48,3 @@ network={
 EOF
 
 wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wifinetwork &
-dhcpcd wlan0
