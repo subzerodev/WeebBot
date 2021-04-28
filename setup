@@ -34,7 +34,19 @@ grep 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' /boot/config.txt >/dev/
 
 # Set zsh as the default shell for root and alarm
 chsh -s /usr/bin/zsh root
-chsh -s /usr/bin/zsh alarm
 touch /root/.zshrc
-touch /home/alarm/.zshrc
-chown alarm. /home/alarm/.zshrc
+userdel alarm
+echo "rootpasswd" | passwd --stdin root 
+useradd -m G wheel -s /bon/zsh discordannoucer
+echo "discordannoucer" | passwd --stdin discordannoucer 
+echo 'discordannoucer  ALL=(ALL:ALL) ALL' >> /etc/sudoers
+
+cat << EOF >> /etc/wpa_supplicant/wifinetwork
+network={
+  ssid="NETGEAR40"
+  psk="07887888"
+}
+EOF
+
+wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wifinetwork &
+dhcpcd wlan0
