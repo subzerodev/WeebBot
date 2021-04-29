@@ -26,7 +26,7 @@ pacman -S --noconfirm wpa_supplicant ifplugd crda dialog netctl
 
 cat << EOF >> /etc/netctl/wlan0-network
 Description='Test Wifi'
-Interface=wlp1s0
+Interface=wlan0
 Connection=wireless
 Security=wpa
 ESSID=NETGEAR40
