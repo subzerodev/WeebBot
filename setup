@@ -29,7 +29,7 @@ network={
 }
 EOF
 
-wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wifinetwork &
+wpa_supplicant -B -iwlan0 -c /etc/wpa_supplicant/wifinetwork -Dn180211,wext
 
 #ln -sf /usr/lib/systemd/system/netctl-auto@.service /etc/systemd/system/multi-user.target.wants/netctl-auto@wlan0.service
 #ln -sf /usr/lib/systemd/system/netctl-ifplugd@.service /etc/systemd/system/multi-user.target.wants/netctl-ifplugd@eth0.service
