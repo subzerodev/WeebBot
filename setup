@@ -65,3 +65,12 @@ echo root:nrootpasswd | chpasswd
 useradd -m -G wheel -s /usr/bin/zsh discordannoucer
 echo discordannoucer:discordannoucer | chpasswd 
 
+#install dependants for discord bot scripts
+pacman --noconfirm -S base-devel git python3 python-pip python-setuptools yajl python-pillow python-dotenv
+
+git clone https://aur.archlinux.org/python-raspberry-gpio.git
+
+cd python-raspberry-gpio && makepkg -si --noconfirm && cd ..
+
+pip3 install discord spidev
+
