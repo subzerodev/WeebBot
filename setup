@@ -23,13 +23,17 @@ ln -sf /usr/lib/systemd/system/avahi-daemon.service /etc/systemd/system/multi-us
 pacman -S --noconfirm wpa_supplicant ifplugd crda dialog
 
 cat << EOF >> /etc/wpa_supplicant/wifinetwork
+ctrl_interface=/run/wpa_supplicant
+ctrl_interface_group=wheel
+update_config=1
+ap_scan=1
 network={
   ssid="NETGEAR40"
   psk="07887888"
 }
 EOF
 
-wpa_supplicant -B -iwlan0 -c /etc/wpa_supplicant/wifinetwork -Dn180211,wext
+wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wifinetwork -D n180211
 
 #ln -sf /usr/lib/systemd/system/netctl-auto@.service /etc/systemd/system/multi-user.target.wants/netctl-auto@wlan0.service
 #ln -sf /usr/lib/systemd/system/netctl-ifplugd@.service /etc/systemd/system/multi-user.target.wants/netctl-ifplugd@eth0.service
