@@ -23,7 +23,7 @@ ln -sf /usr/lib/systemd/system/avahi-daemon.service /etc/systemd/system/multi-us
 
 #Adding wifi
 pacman -S --noconfirm wpa_supplicant ifplugd crda dialog netctl
-
+echo 'write wifi'
 cat << EOF >> /etc/netctl/wlan0-network
 Description='Test Wifi'
 Interface=wlan0
@@ -33,15 +33,13 @@ ESSID=NETGEAR40
 IP=dhcp
 Key=07887888
 EOF
-
+echo 'start wfi'
 netctl start wlan0-network
 netctl enable wlan0-network
 
-ip a
-
 #Adding ssh server
 pacman --noconfirm -S openssh
-
+echo 'link ssh'
 ln -sf /usr/lib/systemd/system/sshd.service /etc/systemd/system/multi-user.target.wants/sshd.service
 
 #ln -sf /usr/lib/systemd/system/wpa_supplicant@.service /etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service
