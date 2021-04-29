@@ -40,8 +40,7 @@ netctl enable wlan0-network
 #Adding ssh server
 pacman --noconfirm -S openssh
 
-systemctl start sshd
-systemctl enable sshd
+ln -sf /usr/lib/systemd/system/sshd.service /etc/systemd/system/multi-user.target.wants/sshd.service
 
 #ln -sf /usr/lib/systemd/system/wpa_supplicant@.service /etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service
 
