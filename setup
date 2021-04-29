@@ -37,6 +37,8 @@ EOF
 netctl start wlan0-network
 netctl enable wlan0-network
 
+ip a
+
 #Adding ssh server
 pacman --noconfirm -S openssh
 
