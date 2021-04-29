@@ -22,14 +22,14 @@ ln -sf /usr/lib/systemd/system/avahi-daemon.service /etc/systemd/system/multi-us
 # No not put any secrets like wifi passphrases in here as they will be publicly exposed in the repository and image.
 pacman -S --noconfirm wpa_supplicant ifplugd crda dialog
 
-cat << EOF >> /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+cat << EOF >> /etc/wpa_supplicant/wpa_supplicant-wlan.conf
 network={
   ssid="NETGEAR40"
   psk="07887888"
 }
 EOF
 
-wpa_supplicant@wlan0.conf
+wpa_supplicant -B -i wlan0 interface -c /etc/wpa_supplicant/wpa_supplicant-wlan.conf
 
 #ln -sf /usr/lib/systemd/system/netctl-auto@.service /etc/systemd/system/multi-user.target.wants/netctl-auto@wlan0.service
 #ln -sf /usr/lib/systemd/system/netctl-ifplugd@.service /etc/systemd/system/multi-user.target.wants/netctl-ifplugd@eth0.service
