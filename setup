@@ -20,6 +20,8 @@ ln -sf /usr/lib/systemd/system/avahi-daemon.service /etc/systemd/system/multi-us
 
 # Enable wireless, actual connection details will be configured by the user, likely over usb-serial.
 # No not put any secrets like wifi passphrases in here as they will be publicly exposed in the repository and image.
+
+#Adding wifi
 pacman -S --noconfirm wpa_supplicant ifplugd crda dialog netctl
 
 cat << EOF >> /etc/netctl/wlan0-network
@@ -34,6 +36,12 @@ EOF
 
 netctl start wlan0-network
 netctl enable wlan0-network
+
+#Adding ssh server
+pacman --noconfirm -S openssh
+
+systemctl start sshd
+systemctl enable sshd
 
 #ln -sf /usr/lib/systemd/system/wpa_supplicant@.service /etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service
 
