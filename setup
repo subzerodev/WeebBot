@@ -34,8 +34,10 @@ IP=dhcp
 Key=07887888
 EOF
 echo 'start wfi'
-netctl start wlan0-network
-netctl enable wlan0-network
+
+
+#netctl enable wlan0-network
+
 
 #Adding ssh server
 pacman --noconfirm -S openssh
@@ -44,7 +46,7 @@ ln -sf /usr/lib/systemd/system/sshd.service /etc/systemd/system/multi-user.targe
 
 #ln -sf /usr/lib/systemd/system/wpa_supplicant@.service /etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service
 
-#ln -sf /usr/lib/systemd/system/netctl-auto@.service /etc/systemd/system/multi-user.target.wants/netctl-auto@wlan0.service
+ln -sf /usr/lib/systemd/system/netctl-auto@.service /etc/systemd/system/multi-user.target.wants/netctl-auto@wlan0.service
 #ln -sf /usr/lib/systemd/system/netctl-ifplugd@.service /etc/systemd/system/multi-user.target.wants/netctl-ifplugd@eth0.service
 
 # Enable the usb serial, this will make it easier to add any wifi credentials on the pi zero (will not work on other models).
