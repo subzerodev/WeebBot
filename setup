@@ -119,6 +119,12 @@ then
 else
      echo -e "File is not in there"
 fi
+
+netctl reenable wlan0-network
+
+tmux new -s discord -d
+
+tmux send-keys -t 'discord' 'python3 /home/discordannoucer/WeebBot/indicator.py' C-m
 EOF
 
 echo "weeb perms"
@@ -138,10 +144,6 @@ EOF
 
 ln -sf /etc/systemd/system/startupdiscord.service /etc/systemd/system/multi-user.target.wants/startupdiscord.service
 
-netctl reenable wlan0-network
 
-tmux new -s discord -d
-
-tmux send-keys -t 'discord' 'python3 /home/discordannoucer/WeebBot/indicator.py' C-m
 
 echo ' Done '
