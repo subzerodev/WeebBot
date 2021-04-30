@@ -75,7 +75,7 @@ su discordannoucer -c 'git clone https://aur.archlinux.org/python-raspberry-gpio
 
 
 
-cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg -si --noconfirm' && cd ..
+cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg -si --noconfirm' && cd /home/discordannoucer
 
 pip3 install discord spidev
 echo "cloning weebs"
