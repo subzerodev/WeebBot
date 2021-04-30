@@ -29,9 +29,9 @@ Description='Test Wifi'
 Interface=wlan0
 Connection=wireless
 Security=wpa
-ESSID=NETGEAR40
+ESSID=YOURSSID
 IP=dhcp
-Key=07887888
+Key=YOURPASS
 EOF
 echo 'start wfi'
 
@@ -57,6 +57,9 @@ ln -sf /usr/lib/systemd/system/getty@ttyGS0.service /etc/systemd/system/getty.ta
 # Enable hardware pwm
 grep 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' /boot/config.txt >/dev/null || echo 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' >> /boot/config.txt
 
+#Enable spi
+grep 'device_tree_param=spi=on' /boot/config.txt >/dev/null || echo 'device_tree_param=spi=on' >> /boot/config.txt
+
 # Set zsh as the default shell for root and alarm
 chsh -s /usr/bin/zsh root
 touch /root/.zshrc
@@ -66,11 +69,29 @@ useradd -m -G wheel -s /usr/bin/zsh discordannoucer
 echo discordannoucer:discordannoucer | chpasswd 
 
 #install dependants for discord bot scripts
-pacman --noconfirm -S base-devel git python3 python-pip python-setuptools yajl python-pillow python-dotenv
+pacman --noconfirm -S base-devel git python3 python-pip python-setuptools yajl python-pillow python-dotenv tmux
 
-git clone https://aur.archlinux.org/python-raspberry-gpio.git
+git clone https://aur.archlinux.org/python-raspberry-gpio.git /home/discordannoucer/python-raspberry-gpio
 
-cd python-raspberry-gpio && makepkg -si --noconfirm && cd ..
+cd /home/discordannoucer/python-raspberry-gpio && makepkg -si --noconfirm && cd ..
 
 pip3 install discord spidev
+
+git clone https://github.com/subzerodev/WeebBot.git /home/discordannoucer/WeebBot
+
+chmod 755 /home/discordannoucer/WeebBot/startupdiscord
+
+echo 'Doing startup scripts'
+cat << EOF >> /etc/systemd/system/startupdiscord.service
+[Unit]
+Description='Checks boot wifi creds and bot'
+
+[Service]
+ExecStart=/home/discordannoucer/WeebBot/startupdiscord
+
+[Install]
+WantedBy=multi-user.target 
+EOF
+
+ln -sf /etc/systemd/system/startupdiscord.service /etc/systemd/system/multi-user.target.wants/startupdiscord.service
 
