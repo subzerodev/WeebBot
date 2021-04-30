@@ -71,13 +71,15 @@ echo discordannoucer:discordannoucer | chpasswd
 #install dependants for discord bot scripts
 pacman --noconfirm -S base-devel git python3 python-pip python-setuptools yajl python-pillow python-dotenv tmux
 
-git clone https://aur.archlinux.org/python-raspberry-gpio.git /home/discordannoucer/python-raspberry-gpio
+su discordannoucer -c 'git clone https://aur.archlinux.org/python-raspberry-gpio.git /home/discordannoucer/python-raspberry-gpio'
+
+
 
 cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg -si --noconfirm' && cd ..
 
 pip3 install discord spidev
 
-git clone https://github.com/subzerodev/WeebBot.git /home/discordannoucer/WeebBot
+su discordannoucer -c 'git clone https://github.com/subzerodev/WeebBot.git /home/discordannoucer/WeebBot'
 
 chmod 755 /home/discordannoucer/WeebBot/startupdiscord
 
