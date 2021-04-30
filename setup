@@ -79,7 +79,7 @@ cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg
 
 pip3 install discord spidev
 echo "cloning weebs"
-su discordannoucer -c 'git clone https://github.com/subzerodev/WeebBot.git /home/discordannoucer/WeebBot'
+git clone https://github.com/subzerodev/WeebBot.git /home/discordannoucer/WeebBot
 echo "weeb perms"
 chmod 755 /home/discordannoucer/WeebBot/startupdiscord
 
