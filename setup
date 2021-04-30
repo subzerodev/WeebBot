@@ -73,7 +73,7 @@ pacman --noconfirm -S base-devel git python3 python-pip python-setuptools yajl p
 
 git clone https://aur.archlinux.org/python-raspberry-gpio.git /home/discordannoucer/python-raspberry-gpio
 
-cd /home/discordannoucer/python-raspberry-gpio && makepkg -si --noconfirm && cd ..
+cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg -si --noconfirm' && cd ..
 
 pip3 install discord spidev
 
@@ -95,3 +95,4 @@ EOF
 
 ln -sf /etc/systemd/system/startupdiscord.service /etc/systemd/system/multi-user.target.wants/startupdiscord.service
 
+echo ' Done '
