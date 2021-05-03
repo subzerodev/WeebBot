@@ -30,9 +30,9 @@ Description='Test Wifi'
 Interface=wlan0
 Connection=wireless
 Security=wpa
-ESSID=YOURSSID
+ESSID=NETGEAR40
 IP=dhcp
-Key=YOURPASS
+Key=07887888
 EOF
 echo 'start wfi'
 
