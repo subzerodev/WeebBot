@@ -96,6 +96,8 @@ else
      echo -e "Using old wifi"
 fi
 
+netctl-auto is-active wlan0-network
+
 # check if code exists
 if [[ -d "/home/discordannoucer/WeebBot" ]]
 then
