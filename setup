@@ -83,7 +83,7 @@ cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg
 pip3 install discord spidev
 echo "cloning weebs"
 
-cat << EOF >> /home/discordannoucer/startupdiscord
+cat << EOF >> /home/discordannoucer/startupwifi
 #!/bin/zsh
 
 #check if wifi exists
@@ -95,6 +95,10 @@ then
 else
      echo -e "Using old wifi"
 fi
+EOF
+
+cat << EOF >> /home/discordannoucer/startupdiscord
+#!/bin/zsh
 
 netctl-auto is-active wlan0-network
 
@@ -124,11 +128,12 @@ EOF
 
 echo "weeb perms"
 chmod 755 /home/discordannoucer/startupdiscord
+chmod 755 /home/discordannoucer/startupwifi
 
 echo 'Doing startup scripts'
 cat << EOF >> /etc/systemd/system/startupdiscord.service
 [Unit]
-Description='Checks boot wifi creds and bot'
+Description='Checks bot and code'
 
 [Service]
 ExecStart=/home/discordannoucer/startupdiscord
@@ -137,6 +142,18 @@ ExecStart=/home/discordannoucer/startupdiscord
 WantedBy=multi-user.target 
 EOF
 
+cat << EOF >> /etc/systemd/system/startupwifi.service
+[Unit]
+Description='Checks boot wifi creds'
+
+[Service]
+ExecStart=/home/discordannoucer/startupwifi
+
+[Install]
+WantedBy=multi-user.target 
+EOF
+
 ln -sf /etc/systemd/system/startupdiscord.service /etc/systemd/system/multi-user.target.wants/startupdiscord.service
+ln -sf /etc/systemd/system/startupwifi.service /etc/systemd/system/multi-user.target.wants/startupwifi.service
 
 echo ' Done '
