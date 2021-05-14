@@ -32,7 +32,7 @@ Description='Test Wifi'
 Interface=wlan0
 Connection=wireless
 Security=wpa
-ESSID=NETGEAR40
+ESSID=Wefe
 IP=dhcp
 Key=07887888
 EOF
