@@ -91,7 +91,7 @@ if [[ -f "/boot/wifikey" ]]
 then
      echo -e "New Wifi Found"
      mv /boot/wifikey /etc/netctl/wlan0-network
-     netctl reenable wlan0-network
+     systemctl restart netctl-auto@wlan0.service
 else
      echo -e "Using old wifi"
 fi
