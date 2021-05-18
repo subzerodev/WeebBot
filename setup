@@ -109,7 +109,7 @@ then
      cd /home/discordannoucer/WeebBot && git pull https://github.com/subzerodev/WeebBot.git && cd ..
 else
      echo -e "Cloning git"
-     cd /home/discordannoucer/WeebBot && git clone https://github.com/subzerodev/WeebBot.git && cd ..
+     cd /home/discordannoucer && git clone https://github.com/subzerodev/WeebBot.git
 fi
 
 # check if bot exists
