@@ -32,9 +32,9 @@ Description='Test Wifi'
 Interface=wlan0
 Connection=wireless
 Security=wpa
-ESSID=Wefe
+ESSID=WIFIHERE
 IP=dhcp
-Key=07887888
+Key=KEYHERE
 EOF
 echo 'start wfi'
 
@@ -146,7 +146,8 @@ EOF
 cat << EOF >> /etc/systemd/system/startupdiscord.service
 [Unit]
 Description='Checks bot and code'
-After=startupwifi.service
+Requires=network.target
+After=dhcpcd.service
 
 [Service]
 ExecStart=/home/discordannoucer/startupdiscord
