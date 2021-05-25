@@ -151,11 +151,12 @@ EOF
 cat << EOF >> /etc/systemd/system/startupdiscord.service
 [Unit]
 Description='Checks bot and code'
-Wants=netctl-auto@wlan0.service
 After=netctl-auto@wlan0.service
 
 [Service]
 ExecStart=/home/discordannoucer/startupdiscord
+StandardOutput=file:/home/discordannoucer/output.log
+StandardError=file:/home/discordannoucer/error.log
 
 [Install]
 WantedBy=multi-user.target 
