@@ -146,8 +146,8 @@ EOF
 cat << EOF >> /etc/systemd/system/startupdiscord.service
 [Unit]
 Description='Checks bot and code'
-Requires=network.target
-After=dhcpcd.service
+Requires=netctl-auto@wlan0.service
+After=netctl-auto@wlan0.service
 
 [Service]
 ExecStart=/home/discordannoucer/startupdiscord
