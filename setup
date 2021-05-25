@@ -100,7 +100,7 @@ EOF
 cat << EOF >> /home/discordannoucer/startupdiscord
 #!/bin/zsh
 
-netctl-auto is-active wlan0-network
+echo 'grabbing code' >> /home/discordannoucer/gitlog
 
 # check if code exists
 if [[ -d "/home/discordannoucer/WeebBot" ]]
@@ -130,6 +130,8 @@ echo "weeb perms"
 chmod 755 /home/discordannoucer/startupdiscord
 chmod 755 /home/discordannoucer/startupwifi
 
+cp /home/discordannoucer/startupdiscord /etc/netctl/interfaces/wlan0
+
 echo 'Doing startup scripts'
 cat << EOF >> /etc/systemd/system/startupwifi.service
 [Unit]
@@ -146,7 +148,7 @@ EOF
 cat << EOF >> /etc/systemd/system/startupdiscord.service
 [Unit]
 Description='Checks bot and code'
-Requires=netctl-auto@wlan0.service
+Wants=netctl-auto@wlan0.service
 After=netctl-auto@wlan0.service
 
 [Service]
@@ -156,7 +158,7 @@ ExecStart=/home/discordannoucer/startupdiscord
 WantedBy=multi-user.target 
 EOF
 
-ln -sf /etc/systemd/system/startupdiscord.service /etc/systemd/system/multi-user.target.wants/startupdiscord.service
+#ln -sf /etc/systemd/system/startupdiscord.service /etc/systemd/system/multi-user.target.wants/startupdiscord.service
 ln -sf /etc/systemd/system/startupwifi.service /etc/systemd/system/multi-user.target.wants/startupwifi.service
 
 echo ' Done '
