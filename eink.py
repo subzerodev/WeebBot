@@ -43,7 +43,7 @@ class eink:
 
     def fontGrab(self,fontSize):
         #returns font obj of the given font size
-        return ImageFont.truetype('./lib/ShadowsIntoLight-Regular.ttf',fontSize)
+        return ImageFont.truetype('/home/discordannoucer/WeebBot/lib/ShadowsIntoLight-Regular.ttf',fontSize)
 
     def roundTo(self,x,base,up=False,down=False):
         #round number to a certain nearest base
