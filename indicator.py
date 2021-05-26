@@ -83,23 +83,23 @@ async def on_voice_state_update(member, before, after):
             checkConnected(member)#check monitored members to see if connected and turn on light
 
             whoConnectStr = ''.join(whoConnect) #list of who on converted to string
-            #print('who on ' + whoConnectStr)
+            print('Joined ' + whoConnectStr)
             updateScreen(whoConnectStr)#update screen on who on
         
         elif before.channel and not after.channel:#left all voice channels
             checkDisconnected(member)
 
             whoConnectStr = ''.join(whoConnect)
-            #print('who o ' + whoConnectStr)
+            print('Left ' + whoConnectStr)
             updateScreen(whoConnectStr)
 
         elif before.channel != after.channel:#if moved channel
             checkConnected(member)
             whoConnectStr = ''.join(whoConnect)
+            print('Moved ' + whoConnectStr)
             updateScreen(whoConnectStr)
 
 def checkConnected(member):#check who connected
-    print(member.voice)
     if member.id==134755248525934592 and member.voice != None:
         whoConnect[0] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(15,True)
