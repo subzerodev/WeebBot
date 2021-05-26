@@ -72,14 +72,16 @@ useradd -m -G wheel -s /usr/bin/zsh discordannoucer
 echo discordannoucer:discordannoucer | chpasswd 
 
 #install dependants for discord bot scripts
+echo 'install python depends'
 pacman --noconfirm -S base-devel git python3 python-pip python-setuptools yajl python-pillow python-dotenv tmux
-
+echo 'installing python gpio'
 su discordannoucer -c 'git clone https://aur.archlinux.org/python-raspberry-gpio.git /home/discordannoucer/python-raspberry-gpio'
 
 
 
-cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg -si --noconfirm' && cd /home/discordannoucer
+cd /home/discordannoucer/python-raspberry-gpio && su discordannoucer -c 'makepkg --noconfirm' && pacman --noconfirm -U /home/discordannoucer/python-raspberry-gpio/python-raspberry-gpio-0.7.0-2-armv6h.pkg.tar.xz && cd /home/discordannoucer
 
+echo 'installing pip modules'
 pip3 install discord spidev
 echo "cloning weebs"
 
