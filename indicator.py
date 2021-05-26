@@ -99,9 +99,8 @@ async def on_voice_state_update(member, before, after):
             updateScreen(whoConnectStr)
 
 def checkConnected(member):#check who connected
-
+    print(member.voice)
     if member.id==134755248525934592 and member.voice != None:
-        #print(member.voice)
         whoConnect[0] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(15,True)
     if member.id==615528881671241728 and member.voice != None:
