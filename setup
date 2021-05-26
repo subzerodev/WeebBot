@@ -121,9 +121,12 @@ else
      echo -e "no bot"
 fi
 
-tmux new -s discord -d
+#tmux new -s discord -d
 
-tmux send-keys -t 'discord' 'python3 /home/discordannoucer/WeebBot/indicator.py' C-m
+#tmux send-keys -t 'discord' 'python3 /home/discordannoucer/WeebBot/indicator.py' C-m
+
+python3 /home/discordannoucer/WeebBot/indicator.py
+
 EOF
 
 cat << EOF >> /etc/netctl/interfaces/wlan0
