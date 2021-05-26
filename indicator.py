@@ -67,7 +67,7 @@ async def on_ready():
     for guild in client.guilds:
         if int(guild.id) == 134755712181075968:
             for member in guild.members:
-                #print('hi ', member.name)  #debug print name of all connected
+                print('hi ', member.name)  #debug print name of all connected
                 checkConnected(member) # check for members already connected before bot connection
                 
                 whoConnectStr = ''.join(whoConnect)
@@ -83,24 +83,23 @@ async def on_voice_state_update(member, before, after):
             checkConnected(member)#check monitored members to see if connected and turn on light
 
             whoConnectStr = ''.join(whoConnect) #list of who on converted to string
-            ##print('Joined ' + whoConnectStr)
+            print(whoConnectStr)
             updateScreen(whoConnectStr)#update screen on who on
         
         elif before.channel and not after.channel:#left all voice channels
             checkDisconnected(member)
 
             whoConnectStr = ''.join(whoConnect)
-            #print('Left ' + whoConnectStr)
+            print(whoConnectStr)
             updateScreen(whoConnectStr)
 
         elif before.channel != after.channel:#if moved channel
             checkConnected(member)
             whoConnectStr = ''.join(whoConnect)
-            #print('Moved ' + whoConnectStr)
+            print(whoConnectStr)
             updateScreen(whoConnectStr)
 
 def checkConnected(member):#check who connected
-    print(member.name)
     if member.id==134755248525934592 and member.voice != None:
         whoConnect[0] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(15,True)
