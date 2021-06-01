@@ -1,5 +1,5 @@
 # WeebBot
-simple python script to check if a group of friends are online and notify through the bot
+Using a raspberry pi with leds and an eink display, it will light up to notify when a user has entered a voice channel on the server running the bot
 
 # Setup
 
