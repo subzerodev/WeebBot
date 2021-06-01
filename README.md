@@ -3,7 +3,7 @@ simple python script to check if a group of friends are online and notify throug
 
 # Setup
 
-1. Download latest release
+1. Download latest release : https://github.com/subzerodev/WeebBot/releases
 2. Create 2 files with no extension : wifikey apikey
 
 WARNING: Files must be made with an editor like notepad++ or vscode. Not windows notepad
