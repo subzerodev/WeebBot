@@ -6,7 +6,7 @@ IFS=$'\n\t'
 # Install any packages we want
 pacman-key --init
 pacman-key --populate archlinuxarm
-pacman -Syu --noconfirm vim bash-completion zsh grml-zsh-config sudo avahi nss-mdns wpa_supplicant termite-terminfo
+pacman -Syu --noconfirm vim bash-completion zsh grml-zsh-config sudo avahi nss-mdns wpa_supplicant
 
 # Update the hostname
 echo discordAnnouncher > /etc/hostname
