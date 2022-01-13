@@ -115,7 +115,7 @@ def checkConnected(member):#check who connected
     if member.id==185088377266110464 and member.voice != None:
         whoConnect[4] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(5,True)
-    if member.id==294115977707388929 and member.voice != None:
+    if member.id==320245581694107660 and member.voice != None:
         whoConnect[5] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(13,True)
 
@@ -136,7 +136,7 @@ def checkDisconnected(member):#check who disconnected
     if member.id==185088377266110464:
         whoConnect[4] = ''
         gpio.output(5,False)
-    if member.id==294115977707388929:
+    if member.id==320245581694107660:
         whoConnect[5] = ''
         gpio.output(13,False)
 
