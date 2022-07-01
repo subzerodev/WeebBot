@@ -109,7 +109,7 @@ def checkConnected(member):#check who connected
     if member.id==161098456730042369 and member.voice != None:
         whoConnect[2] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(3,True)
-    if member.id==333679716248846353 and member.voice != None:
+    if member.id==407278122111598592 and member.voice != None:
         whoConnect[3] = member.name + ' is in ' + str(getattr(member.voice,'channel')) + '},{'
         gpio.output(7,True)
     if member.id==185088377266110464 and member.voice != None:
