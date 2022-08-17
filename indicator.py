@@ -130,7 +130,7 @@ def checkDisconnected(member):#check who disconnected
     if member.id==161098456730042369:
         whoConnect[2] = ''
         gpio.output(3,False)
-    if member.id==333679716248846353:
+    if member.id==407278122111598592:
         whoConnect[3] = ''
         gpio.output(7, False)
     if member.id==185088377266110464:
